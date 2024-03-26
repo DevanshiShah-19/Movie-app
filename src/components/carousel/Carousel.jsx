@@ -16,7 +16,7 @@ import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
 // eslint-disable-next-line react/prop-types
-const Carousel = ({data,loading,endpoint}) => {
+const Carousel = ({data,loading,endpoint,title}) => {
 
   const carouselContainer=useRef();
   const {url}=useSelector((state)=>state.home);
@@ -49,6 +49,7 @@ const Carousel = ({data,loading,endpoint}) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}

@@ -18,11 +18,23 @@ const HeroBanner = () => {
     const bg=url.backdrop+data?.results?.[Math.floor(Math.random()*20)]?.backdrop_path;
     setBackground(bg);
   },[data])
-  const searchQueryHandler=(event)=>{
-    if(event.key==="Enter" && query.length>0){
-      navigate(`/search/${query}`)
+
+  // const searchQueryHandler=(event)=>{
+  //   if(event.key==="Enter" && query.length>0){
+  //     navigate(`/search/${query}`)
+  //   }
+  // }
+
+  const searchQueryHandler = (event) => {
+    if ((event && event.key === "Enter") || !event) {
+      if (query.length > 0) {
+        navigate(`/search/${query}`);
+      }
     }
-  }
+  };
+
+
+  
 
   return (
     <div className="heroBanner">
@@ -33,21 +45,21 @@ const HeroBanner = () => {
       )}
       <div className="opacity-layer"></div>
       <ContentWrapper>
-          <div className="heroBannerContent">
-            <span className="title">Welcome</span>
-            <span className="subtitle">
-              Millions of movies,TV shows and people to discover.Explore now.
-            </span>
-            <div className="searchInput">
-              <input
-                type="text"
-                placeholder="Search for a movie or tv show..."
-                onKeyUp={searchQueryHandler}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <button>Search</button>
-            </div>
+        <div className="heroBannerContent">
+          <span className="title">Welcome</span>
+          <span className="subtitle">
+            Millions of movies,TV shows and people to discover.Explore now.
+          </span>
+          <div className="searchInput">
+            <input
+              type="text"
+              placeholder="Search for a movie or tv show..."
+              onKeyUp={searchQueryHandler}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button onClick={() => searchQueryHandler()}>Search</button>
           </div>
+        </div>
       </ContentWrapper>
     </div>
   );
